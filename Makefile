@@ -1,5 +1,5 @@
 # Digital UNIX 4.0 compilation flags:
-CFLAGS=-std1 -pthread -g -w1 $(DEBUGFLAGS)
+CFLAGS=-std=c11 -pthread -g -w $(DEBUGFLAGS)
 RTFLAGS=-lrt
 
 # Solaris 2.5 compilation flags:
@@ -22,29 +22,29 @@ SOURCES=alarm.c	alarm_cond.c	alarm_fork.c	alarm_mutex.c	\
 PROGRAMS=$(SOURCES:.c=)
 all:	${PROGRAMS}
 alarm_mutex:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ alarm_mutex.c
+	${CC} -o $@ alarm_mutex.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 backoff:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ backoff.c
+	${CC} -o $@ backoff.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 sched_attr:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ sched_attr.c
+	${CC} -o $@ sched_attr.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 sched_thread:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ sched_thread.c
+	${CC} -o $@ sched_thread.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 semaphore_signal:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ semaphore_signal.c
+	${CC} -o $@ semaphore_signal.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 semaphore_wait:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ semaphore_wait.c
+	${CC} -o $@ semaphore_wait.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 sigev_thread:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ sigev_thread.c
+	${CC} -o $@ sigev_thread.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 susp:
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ susp.c
+	${CC} -o $@ susp.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 rwlock_main: rwlock.c rwlock.h rwlock_main.c
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ rwlock_main.c rwlock.c
+	${CC} -o $@ rwlock_main.c rwlock.c ${CFLAGS} ${LDFLAGS}
 rwlock_try_main: rwlock.h rwlock.c rwlock_try_main.c
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ rwlock_try_main.c rwlock.c
+	${CC} -o $@ rwlock_try_main.c rwlock.c ${CFLAGS} ${LDFLAGS}
 barrier_main: barrier.h barrier.c barrier_main.c
-	${CC} ${CFLAGS} ${LDFLAGS} -o $@ barrier_main.c barrier.c
+	${CC} -o $@ barrier_main.c barrier.c ${CFLAGS} ${LDFLAGS}
 workq_main: workq.h workq.c workq_main.c
-	${CC} ${CFLAGS} ${RTFLAGS} ${LDFLAGS} -o $@ workq_main.c workq.c
+	${CC} -o $@ workq_main.c workq.c ${CFLAGS} ${RTFLAGS} ${LDFLAGS}
 clean:
 	@rm -rf $(PROGRAMS) *.o
 recompile:	clean all
