@@ -17,6 +17,8 @@
 
 #define CREW_SIZE       4
 
+#define S_ISSOCK(m) (((m) & __S_IFMT) == __S_IFSOCK)
+
 /*
  * Queued items of work for the crew. One is queued by
  * crew_start, and each worker may queue additional items.
@@ -271,7 +273,7 @@ void *worker_routine (void *arg)
                 "Thread %d: %s is type %o (%s))\n",
                 mine->index,
                 work->path,
-                filestat.st_mode & S_IFMT,
+                filestat.st_mode & __S_IFMT,
                 (S_ISFIFO (filestat.st_mode) ? "FIFO"
                  : (S_ISCHR (filestat.st_mode) ? "CHR"
                     : (S_ISBLK (filestat.st_mode) ? "BLK"
